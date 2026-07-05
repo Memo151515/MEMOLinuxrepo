@@ -1,0 +1,35 @@
+name: tor-browser
+version: scaffold
+summary: Tor Browser bundle adapted for MEMO Linux
+license: MPL-2.0 AND BSD-3-Clause
+homepage: https://www.torproject.org/
+source:
+  type: git
+  url: https://gitlab.torproject.org/tpo/applications/tor-browser.git
+  tag: release-to-pin
+dependencies:
+  - tor
+  - firefox
+  - gtk3
+  - nss
+  - nspr
+  - sqlite
+  - icu
+  - dbus
+build_dependencies:
+  - clang
+  - rust
+  - cargo
+  - python
+  - nodejs
+  - nasm
+  - pkgconf
+build:
+  - build Tor Browser from pinned Tor Project source and verify signatures
+install:
+  - stage under ${PKGDIR}/usr/lib/tor-browser with launcher and desktop file
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Do not ship until reproducible build inputs, Tor daemon recipe, sandbox policy, and signature verification are implemented.
