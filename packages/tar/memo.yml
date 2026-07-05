@@ -1,0 +1,23 @@
+name: tar
+version: 1.35
+summary: GNU archive utility
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/tar/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/tar/tar-1.35.tar.xz
+  directory: tar-1.35
+dependencies:
+  - glibc
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Compression helpers are packaged separately and discovered at runtime.
