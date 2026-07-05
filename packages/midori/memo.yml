@@ -1,0 +1,27 @@
+name: midori
+version: scaffold
+summary: Lightweight browser candidate for MEMO Linux
+license: LGPL-2.1-or-later
+homepage: https://astian.org/midori-browser/
+source:
+  type: git
+  url: https://github.com/goastian/midori-desktop.git
+  tag: release-to-pin
+dependencies:
+  - gtk3
+  - webkitgtk
+build_dependencies:
+  - meson
+  - ninja
+  - gcc
+  - pkgconf
+build:
+  - meson setup memo-build --prefix=/usr --buildtype=release
+  - meson compile -C memo-build
+install:
+  - DESTDIR=${PKGDIR} meson install -C memo-build
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Verify current upstream source layout before turning this into a production recipe.
