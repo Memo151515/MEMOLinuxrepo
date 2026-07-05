@@ -1,0 +1,26 @@
+name: bash
+version: 5.3
+summary: GNU Bourne Again shell
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/bash/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/bash/bash-5.3.tar.gz
+  directory: bash-5.3
+dependencies:
+  - glibc
+  - readline
+  - ncurses
+build_dependencies:
+  - make
+  - gcc
+  - bison
+build:
+  - ./configure --prefix=/usr --without-bash-malloc --with-installed-readline
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Core shell recipe; `/bin/sh` policy should be handled by MEMO base-system integration.
