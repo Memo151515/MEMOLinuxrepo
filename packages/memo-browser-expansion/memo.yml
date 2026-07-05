@@ -1,0 +1,72 @@
+name: memo-browser-expansion
+version: scaffold
+summary: MEMO Linux graphical and terminal browser expansion plan
+license: MEMO-METADATA
+homepage: https://github.com/Memo151515/MEMOLinuxrepo
+source:
+  type: metadata
+  url: https://github.com/Memo151515/MEMOLinuxrepo/tree/main/packages
+  directory: packages
+dependencies:
+  - gtk3
+  - gtk4
+  - qt6-base
+  - nss
+  - nspr
+  - sqlite
+  - icu
+  - libjpeg-turbo
+  - libpng
+  - libwebp
+  - libevent
+  - alsa-lib
+  - pipewire
+  - mesa
+  - xorg-server
+  - wayland
+build_dependencies:
+  - gcc
+  - clang
+  - rust
+  - cargo
+  - cmake
+  - ninja
+  - meson
+  - nodejs
+  - python
+  - pkgconf
+build:
+  - expand browser recipes from this manifest in dependency order
+install:
+  - no direct install; this package tracks MEMO browser scope
+memo:
+  stage: browser-meta
+  lfs_safe: true
+  status: scaffold
+  source_first_browsers:
+    - firefox
+    - firefox-esr
+    - chromium
+    - ungoogled-chromium
+    - librewolf
+    - tor-browser
+    - floorp
+    - waterfox
+    - falkon
+    - epiphany
+    - qutebrowser
+    - midori
+    - netsurf
+    - lynx
+    - links
+    - w3m
+    - dillo
+    - elinks
+  redistribution_review_browsers:
+    - google-chrome
+    - brave-browser
+    - vivaldi
+    - opera
+    - microsoft-edge
+    - yandex-browser
+  notes: Source-first browsers should become normal MEMO source packages. Vendor browsers need license and redistribution review before MEMO ships them in official images.
