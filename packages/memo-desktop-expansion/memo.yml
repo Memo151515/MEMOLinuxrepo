@@ -1,0 +1,96 @@
+name: memo-desktop-expansion
+version: scaffold
+summary: MEMO Linux desktop, compositor, window manager, and session expansion plan
+license: MEMO-METADATA
+homepage: https://github.com/Memo151515/MEMOLinuxrepo
+source:
+  type: metadata
+  url: https://github.com/Memo151515/MEMOLinuxrepo/tree/main/packages
+  directory: packages
+dependencies:
+  - xorg-server
+  - xwayland
+  - wayland
+  - wayland-protocols
+  - mesa
+  - vulkan-loader
+  - libinput
+  - seatd
+  - elogind
+  - dbus
+  - pipewire
+  - wireplumber
+  - xdg-desktop-portal
+  - fontconfig
+  - freetype
+build_dependencies:
+  - gcc
+  - rust
+  - cargo
+  - cmake
+  - meson
+  - ninja
+  - pkgconf
+build:
+  - expand individual package recipes from this manifest in dependency order
+install:
+  - no direct install; this package tracks MEMO desktop scope
+memo:
+  stage: desktop-meta
+  lfs_safe: true
+  status: scaffold
+  desktop_environments:
+    - gnome-shell
+    - plasma-desktop
+    - xfce4-session
+    - lxqt-session
+    - cinnamon
+    - mate-desktop
+    - budgie-desktop
+    - pantheon-session
+    - enlightenment
+    - cosmic-session
+    - deepin-desktop
+    - cutefish-desktop
+  display_managers:
+    - gdm
+    - sddm
+    - lightdm
+    - ly
+    - greetd
+    - tuigreet
+  wayland_compositors:
+    - hyprland
+    - sway
+    - niri
+    - river
+    - wayfire
+    - labwc
+    - weston
+    - cage
+    - dwl
+    - gamescope
+  x11_window_managers:
+    - i3-wm
+    - bspwm
+    - awesome
+    - qtile
+    - openbox
+    - fluxbox
+    - icewm
+    - jwm
+    - fvwm3
+    - pekwm
+    - herbstluftwm
+    - dwm
+    - spectrwm
+    - leftwm
+    - xmonad
+    - ratpoison
+    - wmii
+    - blackbox
+    - windowmaker
+    - afterstep
+    - cwm
+    - vxwm
+  notes: This manifest intentionally includes popular, classic, Wayland-first, and niche window managers so MEMO can grow broad desktop coverage without pretending every recipe is already production-ready.
