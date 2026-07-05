@@ -1,0 +1,24 @@
+name: less
+version: 668
+summary: Terminal pager program
+license: GPL-3.0-or-later OR BSD-2-Clause
+homepage: https://www.greenwoodsoftware.com/less/
+source:
+  type: archive
+  url: https://www.greenwoodsoftware.com/less/less-668.tar.gz
+  directory: less-668
+dependencies:
+  - glibc
+  - ncurses
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr --sysconfdir=/etc
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Core pager candidate; keep integration with alternatives/mailcap outside this minimal source recipe.
