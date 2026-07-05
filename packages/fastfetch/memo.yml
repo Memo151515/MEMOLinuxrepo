@@ -1,0 +1,25 @@
+name: fastfetch
+version: 2.43.0
+summary: Fast system information tool for the terminal
+license: MIT
+homepage: https://github.com/fastfetch-cli/fastfetch
+source:
+  type: archive
+  url: https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.43.0.tar.gz
+  directory: fastfetch-2.43.0
+dependencies:
+  - glibc
+build_dependencies:
+  - cmake
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build build
+install:
+  - DESTDIR=${PKGDIR} cmake --install build
+memo:
+  stage: base-extra
+  lfs_safe: true
+  notes: Optional hardware/library integrations should stay disabled unless their dependencies exist in MEMO.
