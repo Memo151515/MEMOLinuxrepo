@@ -1,0 +1,28 @@
+name: htop
+version: 3.4.1
+summary: Interactive process viewer for Unix systems
+license: GPL-2.0-or-later
+homepage: https://htop.dev/
+source:
+  type: archive
+  url: https://github.com/htop-dev/htop/archive/refs/tags/3.4.1.tar.gz
+  directory: htop-3.4.1
+dependencies:
+  - glibc
+  - ncurses
+build_dependencies:
+  - autoconf
+  - automake
+  - make
+  - gcc
+  - pkgconf
+build:
+  - ./autogen.sh
+  - ./configure --prefix=/usr --sysconfdir=/etc
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base-extra
+  lfs_safe: true
+  notes: Requires ncurses as a MEMO-native dependency before build.
