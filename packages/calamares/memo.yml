@@ -1,0 +1,35 @@
+name: calamares
+version: scaffold
+summary: Distribution-independent graphical installer for MEMO Linux live media
+license: GPL-3.0-or-later
+homepage: https://calamares.io/
+source:
+  type: git
+  url: https://github.com/calamares/calamares.git
+  tag: upstream-release-to-pin
+dependencies:
+  - glibc
+  - qt6-base
+  - qt6-svg
+  - kpmcore
+  - parted
+  - squashfs-tools
+  - rsync
+  - util-linux
+  - polkit
+build_dependencies:
+  - cmake
+  - ninja
+  - extra-cmake-modules
+  - gcc
+  - pkgconf
+build:
+  - cmake -S . -B memo-build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build memo-build
+install:
+  - DESTDIR=${PKGDIR} cmake --install memo-build
+memo:
+  stage: installer
+  lfs_safe: false
+  status: scaffold
+  notes: MEMO live ISO integration must provide modules, branding, partitioning policy, users, locale, bootloader, unpackfs, and source-based dependency recipes before enabling this package by default.
