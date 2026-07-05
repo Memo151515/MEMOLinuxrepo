@@ -1,0 +1,33 @@
+name: i3-wm
+version: rolling
+package_type: source
+status: scaffold
+summary: Dynamic tiling window manager for X11
+license: BSD-3-Clause
+homepage: https://i3wm.org/
+source:
+  type: git
+  url: https://github.com/i3/i3.git
+dependencies:
+  - xorg-server
+  - libxcb
+  - pcre2
+  - yajl
+  - cairo
+  - pango
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --sysconfdir=/etc
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for runtime helper dependency mapping.
+  debian: Used for session file and recommends comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
