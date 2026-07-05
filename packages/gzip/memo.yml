@@ -1,0 +1,23 @@
+name: gzip
+version: 1.14
+summary: GNU gzip compression utility
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/gzip/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gzip/gzip-1.14.tar.xz
+  directory: gzip-1.14
+dependencies:
+  - glibc
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Base compression utility used by tarballs, logs, and source archives.
