@@ -1,0 +1,33 @@
+name: mesa
+version: rolling
+package_type: source
+status: scaffold
+summary: Open source OpenGL, Vulkan, and graphics driver stack
+license: MIT
+homepage: https://www.mesa3d.org/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/mesa/mesa.git
+dependencies:
+  - glibc
+  - llvm
+  - libdrm
+  - wayland
+  - xorg-libs
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - python
+  - gcc
+build:
+  - meson setup build --prefix=/usr -Dplatforms=x11,wayland -Dvulkan-drivers=auto -Dgallium-drivers=auto
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for driver split and Vulkan/OpenGL feature mapping.
+  debian: Used for library ABI package boundary comparison.
+memo:
+  stage: desktop-core
+  lfs_safe: true
