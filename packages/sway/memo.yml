@@ -1,0 +1,33 @@
+name: sway
+version: rolling
+package_type: source
+status: scaffold
+summary: i3-compatible Wayland compositor
+license: MIT
+homepage: https://swaywm.org/
+source:
+  type: git
+  url: https://github.com/swaywm/sway.git
+dependencies:
+  - wlroots
+  - wayland
+  - wayland-protocols
+  - seatd
+  - pcre2
+  - json-c
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --sysconfdir=/etc
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for wlroots and optional feature mapping.
+  debian: Used for session file and dependency comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
