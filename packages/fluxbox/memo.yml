@@ -1,0 +1,32 @@
+name: fluxbox
+version: rolling
+package_type: source
+status: scaffold
+summary: Lightweight window manager based on Blackbox
+license: MIT
+homepage: http://fluxbox.org/
+source:
+  type: git
+  url: https://github.com/fluxbox/fluxbox.git
+dependencies:
+  - xorg-server
+  - libx11
+  - libxft
+  - imlib2
+build_dependencies:
+  - autotools
+  - make
+  - pkgconf
+  - gcc
+build:
+  - ./autogen.sh
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+reference_packaging:
+  arch: Used for optional menu and style handling.
+  debian: Used for X session integration comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
