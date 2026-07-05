@@ -1,0 +1,28 @@
+name: netsurf
+version: scaffold
+summary: Lightweight graphical web browser for MEMO Linux
+license: GPL-2.0-only
+homepage: https://www.netsurf-browser.org/
+source:
+  type: archive
+  url: https://download.netsurf-browser.org/netsurf/releases/source-full/
+  directory: netsurf-version-to-pin
+dependencies:
+  - gtk3
+  - libpng
+  - libjpeg-turbo
+  - openssl
+build_dependencies:
+  - make
+  - gcc
+  - perl
+  - pkgconf
+build:
+  - make TARGET=gtk
+install:
+  - make TARGET=gtk DESTDIR=${PKGDIR} PREFIX=/usr install
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Good lightweight browser candidate once MEMO has the NetSurf support libraries packaged.
