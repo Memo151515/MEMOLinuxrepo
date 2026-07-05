@@ -56,8 +56,8 @@ The repository now contains a small but realistic source-based package set:
 
 - Base shell and utilities: `bash`, `coreutils`, `findutils`, `gawk`, `grep`, `gzip`, `sed`, `tar`
 - Terminal/user tools: `fastfetch`, `htop`, `less`, `tree`
-- Installer planning: `calamares`
+- Installer package scaffold: `calamares`
 - Desktop expansion planning: `memo-desktop-expansion`, covering GNOME, KDE Plasma, Xfce, LXQt, Cinnamon, MATE, Budgie, Pantheon, Enlightenment, Cosmic, classic X11 window managers, Wayland compositors, niche WMs such as `niri` and `vxwm`, display managers, audio, graphics, portals, fonts, and login/session infrastructure
-- Browser expansion planning: source-first browsers such as Firefox, Chromium, LibreWolf, Tor Browser, Floorp, Waterfox, Falkon, Epiphany, qutebrowser, text browsers, plus redistribution-reviewed vendor browsers such as Google Chrome, Brave, Vivaldi, Opera, and Microsoft Edge
+- Direct browser package scaffolds: `firefox`, `chromium`, `librewolf`, `tor-browser`, `google-chrome`, `brave-browser`, `vivaldi`, `opera`, `microsoft-edge`, `ungoogled-chromium`, `floorp`, `waterfox`, `falkon`, `epiphany`, `qutebrowser`, `netsurf`, `lynx`, `w3m`, `links`, `midori`
 
-The next important step is turning the scaffold recipes into tested `build.sh` scripts in dependency order: toolchain and libraries first, then graphics/audio/session layers, then desktops, browsers, and installer images.
+The next important step is turning scaffold recipes into tested builds in dependency order: toolchain and libraries first, then graphics/audio/session layers, then desktops, browsers, and installer images.
