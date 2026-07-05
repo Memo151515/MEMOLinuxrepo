@@ -1,0 +1,27 @@
+name: wayland-protocols
+version: rolling
+package_type: source
+status: scaffold
+summary: Wayland protocol extension definitions
+license: MIT
+homepage: https://wayland.freedesktop.org/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+dependencies:
+  - wayland
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+build:
+  - meson setup build --prefix=/usr
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for protocol package naming and meson build flow.
+  debian: Used for install layout comparison.
+memo:
+  stage: desktop-core
+  lfs_safe: true
