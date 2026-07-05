@@ -1,0 +1,22 @@
+name: tree
+version: 2.2.1
+summary: Recursive directory listing command
+license: GPL-2.0-or-later
+homepage: https://oldmanprogrammer.net/source.php?dir=projects/tree
+source:
+  type: archive
+  url: https://oldmanprogrammer.net/tar/tree/tree-2.2.1.tgz
+  directory: tree-2.2.1
+dependencies:
+  - glibc
+build_dependencies:
+  - make
+  - gcc
+build:
+  - make prefix=/usr
+install:
+  - make DESTDIR=${PKGDIR} prefix=/usr install
+memo:
+  stage: base-extra
+  lfs_safe: true
+  notes: Small Makefile package suitable for validating simple DESTDIR installs.
