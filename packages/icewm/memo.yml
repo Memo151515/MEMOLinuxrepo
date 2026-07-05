@@ -1,0 +1,31 @@
+name: icewm
+version: rolling
+package_type: source
+status: scaffold
+summary: Lightweight stacking window manager
+license: LGPL-2.0-or-later
+homepage: https://ice-wm.org/
+source:
+  type: git
+  url: https://github.com/ice-wm/icewm.git
+dependencies:
+  - xorg-server
+  - libx11
+  - libxrandr
+  - libxinerama
+build_dependencies:
+  - cmake
+  - make
+  - pkgconf
+  - gcc
+build:
+  - cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build build
+install:
+  - DESTDIR=${PKGDIR} cmake --install build
+reference_packaging:
+  arch: Used for optional image/font dependencies.
+  debian: Used for session and menu integration comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
