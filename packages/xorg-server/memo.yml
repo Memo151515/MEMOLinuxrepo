@@ -1,0 +1,33 @@
+name: xorg-server
+version: rolling
+package_type: source
+status: scaffold
+summary: X.Org display server
+license: MIT
+homepage: https://www.x.org/wiki/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/xorg/xserver.git
+dependencies:
+  - glibc
+  - mesa
+  - libinput
+  - libxfont2
+  - pixman
+  - openssl
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --localstatedir=/var
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for Xorg module and driver dependency expectations.
+  debian: Used for filesystem layout and setuid/rootless Xorg policy comparison.
+memo:
+  stage: desktop-core
+  lfs_safe: true
