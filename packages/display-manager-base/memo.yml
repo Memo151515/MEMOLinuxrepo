@@ -1,0 +1,24 @@
+name: display-manager-base
+version: 0
+package_type: meta
+status: scaffold
+summary: Common display manager policy package for MEMO desktops
+license: MEMO-policy
+homepage: https://github.com/Memo151515/MEMOLinuxrepo
+source:
+  type: none
+dependencies:
+  - xorg-server
+  - wayland
+  - seatd
+  - dbus
+build_dependencies: []
+build: []
+install: []
+reference_packaging:
+  arch: Used for comparing display manager split packages.
+  debian: Used for default-display-manager policy comparison.
+memo:
+  stage: desktop-policy
+  lfs_safe: true
+  notes: This is a policy/meta package; actual display managers such as sddm, gdm, and lightdm should be added as separate source packages.
