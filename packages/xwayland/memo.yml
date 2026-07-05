@@ -1,0 +1,31 @@
+name: xwayland
+version: rolling
+package_type: source
+status: scaffold
+summary: X server for running X11 clients under Wayland
+license: MIT
+homepage: https://wayland.freedesktop.org/xserver.html
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/xorg/xserver.git
+dependencies:
+  - wayland
+  - xorg-server
+  - mesa
+  - libx11
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr -Dxwayland=true
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for xwayland split-package behavior.
+  debian: Used for dependency and compatibility expectations.
+memo:
+  stage: desktop-core
+  lfs_safe: true
