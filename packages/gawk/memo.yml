@@ -1,0 +1,26 @@
+name: gawk
+version: 5.4.0
+summary: GNU awk text processing language
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/gawk/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gawk/gawk-5.4.0.tar.xz
+  directory: gawk-5.4.0
+dependencies:
+  - glibc
+  - gmp
+  - mpfr
+  - readline
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: GNU awk is needed by many source build systems and bootstrap scripts.
