@@ -1,0 +1,26 @@
+name: coreutils
+version: 9.10
+summary: GNU core file, shell, and text utilities
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/coreutils/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/coreutils/coreutils-9.10.tar.xz
+  directory: coreutils-9.10
+dependencies:
+  - glibc
+  - acl
+  - attr
+build_dependencies:
+  - make
+  - gcc
+  - perl
+build:
+  - FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --enable-no-install-program=kill,uptime
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Early MEMO builds may disable programs supplied by other packages to avoid file ownership conflicts.
