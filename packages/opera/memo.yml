@@ -1,0 +1,30 @@
+name: opera
+version: scaffold
+summary: Opera vendor browser integration placeholder for MEMO Linux
+license: Proprietary
+homepage: https://www.opera.com/
+source:
+  type: vendor
+  url: https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/
+  directory: opera-version-to-review
+dependencies:
+  - glibc
+  - gtk3
+  - nss
+  - nspr
+  - cups
+  - dbus
+  - fontconfig
+  - mesa
+build_dependencies:
+  - bsdtar
+  - patchelf
+build:
+  - review vendor redistribution terms before packaging
+install:
+  - stage reviewed vendor payload under ${PKGDIR}/usr/lib/opera and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser-vendor
+  lfs_safe: false
+  status: redistribution_review
+  notes: Vendor binary package; keep outside default MEMO source install set until license review is done.
