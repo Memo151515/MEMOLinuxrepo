@@ -1,0 +1,30 @@
+name: herbstluftwm
+version: rolling
+package_type: source
+status: scaffold
+summary: Manual tiling window manager for X11
+license: BSD-2-Clause
+homepage: https://herbstluftwm.org/
+source:
+  type: git
+  url: https://github.com/herbstluftwm/herbstluftwm.git
+dependencies:
+  - xorg-server
+  - libx11
+  - glib
+build_dependencies:
+  - cmake
+  - make
+  - pkgconf
+  - gcc
+build:
+  - cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build build
+install:
+  - DESTDIR=${PKGDIR} cmake --install build
+reference_packaging:
+  arch: Used for build flags and example configs.
+  debian: Used for session entry comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
