@@ -1,0 +1,28 @@
+name: qtile
+version: rolling
+package_type: source
+status: scaffold
+summary: Hackable tiling window manager written in Python
+license: MIT
+homepage: https://qtile.org/
+source:
+  type: git
+  url: https://github.com/qtile/qtile.git
+dependencies:
+  - python
+  - libxcb
+  - pango
+  - cairo
+build_dependencies:
+  - python-build
+  - python-installer
+build:
+  - python -m build --wheel --no-isolation
+install:
+  - python -m installer --destdir=${PKGDIR} dist/*.whl
+reference_packaging:
+  arch: Used for Python dependency mapping.
+  debian: Used for session and Python package split comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
