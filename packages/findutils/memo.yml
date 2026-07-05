@@ -1,0 +1,23 @@
+name: findutils
+version: 4.10.0
+summary: GNU find, xargs, and related file search utilities
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/findutils/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/findutils/findutils-4.10.0.tar.xz
+  directory: findutils-4.10.0
+dependencies:
+  - glibc
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr --localstatedir=/var/lib/locate
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Locate database ownership and update policy should be defined later by MEMO system policy.
