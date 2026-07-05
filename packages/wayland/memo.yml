@@ -1,0 +1,30 @@
+name: wayland
+version: rolling
+package_type: source
+status: scaffold
+summary: Core Wayland display server protocol libraries
+license: MIT
+homepage: https://wayland.freedesktop.org/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/wayland/wayland.git
+dependencies:
+  - glibc
+  - libffi
+  - expat
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for meson options and split between wayland and wayland-protocols.
+  debian: Used for library/runtime development package boundaries.
+memo:
+  stage: desktop-core
+  lfs_safe: true
