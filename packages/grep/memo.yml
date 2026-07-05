@@ -1,0 +1,24 @@
+name: grep
+version: 3.12
+summary: GNU text search utility
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/grep/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz
+  directory: grep-3.12
+dependencies:
+  - glibc
+  - pcre2
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: PCRE2 support should be enabled when MEMO has a native pcre2 package.
