@@ -1,0 +1,32 @@
+name: gnome-shell
+version: rolling
+package_type: source
+status: scaffold
+summary: GNOME desktop shell
+license: GPL-2.0-or-later
+homepage: https://www.gnome.org/
+source:
+  type: git
+  url: https://gitlab.gnome.org/GNOME/gnome-shell.git
+dependencies:
+  - mutter
+  - gtk4
+  - gjs
+  - pipewire
+  - networkmanager
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --sysconfdir=/etc
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for GNOME component dependency mapping.
+  debian: Used for session and extension integration comparison.
+memo:
+  stage: desktop-environment
+  lfs_safe: true
