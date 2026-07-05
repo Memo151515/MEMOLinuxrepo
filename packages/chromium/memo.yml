@@ -1,0 +1,43 @@
+name: chromium
+version: scaffold
+summary: Open-source Chromium web browser for MEMO Linux
+license: BSD-3-Clause
+homepage: https://www.chromium.org/chromium-projects/
+source:
+  type: git
+  url: https://chromium.googlesource.com/chromium/src.git
+  tag: release-to-pin
+dependencies:
+  - glibc
+  - gtk3
+  - nss
+  - nspr
+  - cups
+  - dbus
+  - fontconfig
+  - freetype
+  - harfbuzz
+  - libjpeg-turbo
+  - libpng
+  - libwebp
+  - mesa
+  - alsa-lib
+  - pipewire
+build_dependencies:
+  - clang
+  - lld
+  - python
+  - nodejs
+  - ninja
+  - gn
+  - pkgconf
+build:
+  - gn gen out/Release --args='is_debug=false is_component_build=false use_sysroot=false'
+  - ninja -C out/Release chrome chrome_sandbox
+install:
+  - install into ${PKGDIR}/usr/lib/chromium and add launchers under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Very large source build; MEMO must package depot_tools or equivalent fetch/bootstrap flow without relying on another distro.
