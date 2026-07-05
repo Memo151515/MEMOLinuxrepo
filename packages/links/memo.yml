@@ -1,0 +1,27 @@
+name: links
+version: scaffold
+summary: Text and optional graphical web browser for MEMO Linux
+license: GPL-2.0-or-later
+homepage: http://links.twibright.com/
+source:
+  type: archive
+  url: http://links.twibright.com/download/
+  directory: links-version-to-pin
+dependencies:
+  - glibc
+  - openssl
+  - zlib
+build_dependencies:
+  - make
+  - gcc
+  - pkgconf
+build:
+  - ./configure --prefix=/usr --enable-graphics
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: browser
+  lfs_safe: true
+  status: scaffold
+  notes: Build text-only first; enable graphics once MEMO has framebuffer/X11 image dependencies ready.
