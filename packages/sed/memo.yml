@@ -1,0 +1,23 @@
+name: sed
+version: 4.10
+summary: GNU stream editor
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/sed/
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/sed/sed-4.10.tar.xz
+  directory: sed-4.10
+dependencies:
+  - glibc
+build_dependencies:
+  - make
+  - gcc
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: base
+  lfs_safe: true
+  notes: Core POSIX-style stream editing tool for base scripts.
