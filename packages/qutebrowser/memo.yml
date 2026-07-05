@@ -1,0 +1,26 @@
+name: qutebrowser
+version: scaffold
+summary: Keyboard-driven QtWebEngine browser for MEMO Linux
+license: GPL-3.0-or-later
+homepage: https://www.qutebrowser.org/
+source:
+  type: git
+  url: https://github.com/qutebrowser/qutebrowser.git
+  tag: release-to-pin
+dependencies:
+  - python
+  - pyqt6
+  - qt6-webengine
+build_dependencies:
+  - python
+  - python-build
+  - python-installer
+build:
+  - python -m build --wheel --no-isolation
+install:
+  - python -m installer --destdir=${PKGDIR} dist/*.whl
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Requires MEMO Python packaging policy for PyQt6 and QtWebEngine bindings.
