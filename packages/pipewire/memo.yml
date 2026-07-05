@@ -1,0 +1,31 @@
+name: pipewire
+version: rolling
+package_type: source
+status: scaffold
+summary: Multimedia server for audio and video routing
+license: MIT
+homepage: https://pipewire.org/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/pipewire/pipewire.git
+dependencies:
+  - glibc
+  - alsa-lib
+  - dbus
+  - libspa
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --sysconfdir=/etc
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for optional plugin split and service layout.
+  debian: Used for compatibility package boundaries.
+memo:
+  stage: desktop-core
+  lfs_safe: true
