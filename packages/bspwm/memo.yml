@@ -1,0 +1,28 @@
+name: bspwm
+version: rolling
+package_type: source
+status: scaffold
+summary: Binary space partitioning tiling window manager
+license: BSD-2-Clause
+homepage: https://github.com/baskerville/bspwm
+source:
+  type: git
+  url: https://github.com/baskerville/bspwm.git
+dependencies:
+  - xorg-server
+  - libxcb
+  - sxhkd
+build_dependencies:
+  - make
+  - gcc
+  - pkgconf
+build:
+  - make PREFIX=/usr
+install:
+  - make DESTDIR=${PKGDIR} PREFIX=/usr install
+reference_packaging:
+  arch: Used for sxhkd dependency and simple Makefile install.
+  debian: Used for example configuration placement.
+memo:
+  stage: window-manager
+  lfs_safe: true
