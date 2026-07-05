@@ -1,0 +1,32 @@
+name: waterfox
+version: scaffold
+summary: Firefox-derived Waterfox browser for MEMO Linux
+license: MPL-2.0
+homepage: https://www.waterfox.net/
+source:
+  type: git
+  url: https://github.com/WaterfoxCo/Waterfox.git
+  tag: release-to-pin
+dependencies:
+  - firefox
+  - gtk3
+  - nss
+  - nspr
+  - sqlite
+  - icu
+build_dependencies:
+  - clang
+  - rust
+  - cargo
+  - nodejs
+  - python
+  - pkgconf
+build:
+  - build from pinned Waterfox source after MEMO Firefox toolchain is ready
+install:
+  - stage under ${PKGDIR}/usr/lib/waterfox and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Check release source availability and branding rules before official MEMO images include it.
