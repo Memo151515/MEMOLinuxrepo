@@ -52,4 +52,9 @@ Install commands must stage into `${PKGDIR}` via `DESTDIR` or equivalent. They m
 
 ## Current Scope
 
-The repository currently starts with small, useful command-line packages that are good early tests for a Linux From Scratch based native repository: `fastfetch`, `tree`, `htop`, and `less`.
+The repository now contains a small but realistic source-based package set:
+
+- Base shell and utilities: `bash`, `coreutils`, `findutils`, `gawk`, `grep`, `gzip`, `sed`, `tar`
+- Terminal/user tools: `fastfetch`, `htop`, `less`, `tree`
+
+The next important step is adding native library recipes required by these packages, such as `readline`, `ncurses`, `pcre2`, `gmp`, `mpfr`, `acl`, and `attr`.
