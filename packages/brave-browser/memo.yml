@@ -1,0 +1,32 @@
+name: brave-browser
+version: scaffold
+summary: Brave browser vendor/source integration placeholder for MEMO Linux
+license: MPL-2.0 AND Proprietary-Branding
+homepage: https://brave.com/
+source:
+  type: git
+  url: https://github.com/brave/brave-browser.git
+  tag: release-to-pin
+dependencies:
+  - chromium
+  - gtk3
+  - nss
+  - nspr
+  - dbus
+  - mesa
+build_dependencies:
+  - clang
+  - nodejs
+  - python
+  - ninja
+  - gn
+  - pkgconf
+build:
+  - build from Brave sources after pinning Chromium base and branding policy
+install:
+  - stage under ${PKGDIR}/usr/lib/brave-browser and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Check branding, updater, wallet, and component download behavior before enabling in official MEMO images.
