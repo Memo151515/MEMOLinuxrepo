@@ -1,0 +1,30 @@
+name: epiphany
+version: scaffold
+summary: GNOME Web browser for MEMO Linux
+license: GPL-3.0-or-later
+homepage: https://apps.gnome.org/Epiphany/
+source:
+  type: archive
+  url: https://download.gnome.org/sources/epiphany/
+  directory: epiphany-version-to-pin
+dependencies:
+  - gtk4
+  - libadwaita
+  - webkitgtk
+  - glib
+  - gsettings-desktop-schemas
+build_dependencies:
+  - meson
+  - ninja
+  - gcc
+  - pkgconf
+build:
+  - meson setup memo-build --prefix=/usr --buildtype=release
+  - meson compile -C memo-build
+install:
+  - DESTDIR=${PKGDIR} meson install -C memo-build
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Build after WebKitGTK and GNOME platform libraries are available in MEMO.
