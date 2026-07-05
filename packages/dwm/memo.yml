@@ -1,0 +1,28 @@
+name: dwm
+version: rolling
+package_type: source
+status: scaffold
+summary: Minimal dynamic window manager for X11
+license: MIT
+homepage: https://dwm.suckless.org/
+source:
+  type: git
+  url: https://git.suckless.org/dwm
+dependencies:
+  - xorg-server
+  - libx11
+  - libxft
+build_dependencies:
+  - make
+  - gcc
+build:
+  - make PREFIX=/usr
+install:
+  - make DESTDIR=${PKGDIR} PREFIX=/usr install
+reference_packaging:
+  arch: Used for source patching expectations.
+  debian: Used for minimal package layout comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
+  notes: Local MEMO customization patches should live in a later patches field.
