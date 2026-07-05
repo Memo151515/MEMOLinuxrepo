@@ -1,0 +1,33 @@
+name: awesome
+version: rolling
+package_type: source
+status: scaffold
+summary: Highly configurable X11 window manager
+license: GPL-2.0-or-later
+homepage: https://awesomewm.org/
+source:
+  type: git
+  url: https://github.com/awesomeWM/awesome.git
+dependencies:
+  - xorg-server
+  - lua
+  - cairo
+  - pango
+  - libxcb
+  - dbus
+build_dependencies:
+  - cmake
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build build
+install:
+  - DESTDIR=${PKGDIR} cmake --install build
+reference_packaging:
+  arch: Used for Lua and widget dependency mapping.
+  debian: Used for session file and runtime module comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
