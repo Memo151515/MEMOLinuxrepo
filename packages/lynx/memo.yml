@@ -1,0 +1,28 @@
+name: lynx
+version: scaffold
+summary: Text-mode web browser for MEMO Linux
+license: GPL-2.0-or-later
+homepage: https://lynx.invisible-island.net/
+source:
+  type: archive
+  url: https://invisible-mirror.net/archives/lynx/tarballs/
+  directory: lynx-version-to-pin
+dependencies:
+  - glibc
+  - ncurses
+  - openssl
+  - zlib
+build_dependencies:
+  - make
+  - gcc
+  - pkgconf
+build:
+  - ./configure --prefix=/usr --with-ssl --enable-ipv6
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: browser
+  lfs_safe: true
+  status: scaffold
+  notes: Useful early browser recipe because it has a much smaller dependency tree than graphical browsers.
