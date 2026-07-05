@@ -1,0 +1,31 @@
+name: libinput
+version: rolling
+package_type: source
+status: scaffold
+summary: Input device handling library for Wayland and X.Org
+license: MIT
+homepage: https://wayland.freedesktop.org/libinput/doc/latest/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/libinput/libinput.git
+dependencies:
+  - glibc
+  - libevdev
+  - mtdev
+  - eudev
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for input stack dependencies.
+  debian: Used for udev rules and runtime layout comparison.
+memo:
+  stage: desktop-core
+  lfs_safe: true
