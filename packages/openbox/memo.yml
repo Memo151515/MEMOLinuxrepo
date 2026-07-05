@@ -1,0 +1,33 @@
+name: openbox
+version: rolling
+package_type: source
+status: scaffold
+summary: Lightweight stacking window manager for X11
+license: GPL-2.0-or-later
+homepage: http://openbox.org/
+source:
+  type: git
+  url: https://github.com/danakj/openbox.git
+dependencies:
+  - xorg-server
+  - libx11
+  - pango
+  - cairo
+  - glib
+build_dependencies:
+  - autotools
+  - make
+  - pkgconf
+  - gcc
+build:
+  - ./bootstrap
+  - ./configure --prefix=/usr --sysconfdir=/etc
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+reference_packaging:
+  arch: Used for menu/session integration expectations.
+  debian: Used for alternatives and X session layout comparison.
+memo:
+  stage: window-manager
+  lfs_safe: true
