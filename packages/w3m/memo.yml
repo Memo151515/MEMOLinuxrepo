@@ -1,0 +1,30 @@
+name: w3m
+version: scaffold
+summary: Text-based web browser and pager for MEMO Linux
+license: MIT
+homepage: https://github.com/tats/w3m
+source:
+  type: git
+  url: https://github.com/tats/w3m.git
+  tag: release-to-pin
+dependencies:
+  - glibc
+  - ncurses
+  - openssl
+  - gc
+build_dependencies:
+  - make
+  - gcc
+  - autoconf
+  - automake
+  - pkgconf
+build:
+  - ./configure --prefix=/usr
+  - make
+install:
+  - make DESTDIR=${PKGDIR} install
+memo:
+  stage: browser
+  lfs_safe: true
+  status: scaffold
+  notes: Keep image support optional until MEMO has the required graphics libraries packaged.
