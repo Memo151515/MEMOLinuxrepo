@@ -1,0 +1,29 @@
+name: falkon
+version: scaffold
+summary: KDE QtWebEngine browser for MEMO Linux
+license: GPL-3.0-or-later
+homepage: https://apps.kde.org/falkon/
+source:
+  type: archive
+  url: https://download.kde.org/stable/falkon/
+  directory: falkon-version-to-pin
+dependencies:
+  - qt6-base
+  - qt6-webengine
+  - kf6-frameworks
+build_dependencies:
+  - cmake
+  - ninja
+  - extra-cmake-modules
+  - gcc
+  - pkgconf
+build:
+  - cmake -S . -B memo-build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build memo-build
+install:
+  - DESTDIR=${PKGDIR} cmake --install memo-build
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Depends on a working QtWebEngine stack, so build after Chromium/Qt browser dependencies are packaged.
