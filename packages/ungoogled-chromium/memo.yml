@@ -1,0 +1,31 @@
+name: ungoogled-chromium
+version: scaffold
+summary: Chromium variant with Google web service integration removed
+license: BSD-3-Clause
+homepage: https://github.com/ungoogled-software/ungoogled-chromium
+source:
+  type: git
+  url: https://github.com/ungoogled-software/ungoogled-chromium.git
+  tag: release-to-pin
+dependencies:
+  - chromium
+  - gtk3
+  - nss
+  - nspr
+  - dbus
+  - mesa
+build_dependencies:
+  - clang
+  - python
+  - ninja
+  - gn
+  - pkgconf
+build:
+  - apply ungoogled-chromium patches to pinned Chromium source and build with MEMO flags
+install:
+  - stage under ${PKGDIR}/usr/lib/ungoogled-chromium and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Keep patchset version locked to the exact Chromium source revision.
