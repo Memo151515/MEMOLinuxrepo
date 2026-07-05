@@ -1,0 +1,36 @@
+name: librewolf
+version: scaffold
+summary: Privacy-focused Firefox-derived browser for MEMO Linux
+license: MPL-2.0
+homepage: https://librewolf.net/
+source:
+  type: git
+  url: https://codeberg.org/librewolf/source.git
+  tag: release-to-pin
+dependencies:
+  - firefox
+  - gtk3
+  - nss
+  - nspr
+  - sqlite
+  - icu
+  - dbus
+  - mesa
+build_dependencies:
+  - clang
+  - rust
+  - cargo
+  - cbindgen
+  - nodejs
+  - python
+  - nasm
+  - pkgconf
+build:
+  - run LibreWolf source build after pinning release and branding assets
+install:
+  - stage browser files under ${PKGDIR}/usr/lib/librewolf and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Keep LibreWolf policies and privacy defaults distinct from vanilla Firefox in MEMO.
