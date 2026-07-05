@@ -1,0 +1,30 @@
+name: microsoft-edge
+version: scaffold
+summary: Microsoft Edge vendor browser integration placeholder for MEMO Linux
+license: Proprietary
+homepage: https://www.microsoft.com/edge
+source:
+  type: vendor
+  url: https://packages.microsoft.com/repos/edge/
+  directory: microsoft-edge-version-to-review
+dependencies:
+  - glibc
+  - gtk3
+  - nss
+  - nspr
+  - cups
+  - dbus
+  - fontconfig
+  - mesa
+build_dependencies:
+  - bsdtar
+  - patchelf
+build:
+  - review vendor redistribution terms before packaging
+install:
+  - stage reviewed vendor payload under ${PKGDIR}/opt/microsoft/msedge and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser-vendor
+  lfs_safe: false
+  status: redistribution_review
+  notes: Vendor binary package; Chromium remains the source-first MEMO alternative.
