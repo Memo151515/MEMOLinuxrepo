@@ -1,0 +1,30 @@
+name: wireplumber
+version: rolling
+package_type: source
+status: scaffold
+summary: PipeWire session and policy manager
+license: MIT
+homepage: https://pipewire.pages.freedesktop.org/wireplumber/
+source:
+  type: git
+  url: https://gitlab.freedesktop.org/pipewire/wireplumber.git
+dependencies:
+  - glibc
+  - pipewire
+  - lua
+build_dependencies:
+  - meson
+  - ninja
+  - pkgconf
+  - gcc
+build:
+  - meson setup build --prefix=/usr --sysconfdir=/etc
+  - ninja -C build
+install:
+  - DESTDIR=${PKGDIR} ninja -C build install
+reference_packaging:
+  arch: Used for PipeWire session-manager defaults.
+  debian: Used for configuration layout comparison.
+memo:
+  stage: desktop-core
+  lfs_safe: true
