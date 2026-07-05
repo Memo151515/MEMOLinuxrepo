@@ -1,0 +1,42 @@
+name: firefox
+version: scaffold
+summary: Mozilla Firefox web browser for MEMO Linux
+license: MPL-2.0
+homepage: https://www.mozilla.org/firefox/
+source:
+  type: archive
+  url: https://archive.mozilla.org/pub/firefox/releases/
+  directory: firefox-version-to-pin
+dependencies:
+  - glibc
+  - gtk3
+  - nss
+  - nspr
+  - sqlite
+  - icu
+  - libjpeg-turbo
+  - libpng
+  - libwebp
+  - dbus
+  - alsa-lib
+  - pipewire
+  - mesa
+build_dependencies:
+  - clang
+  - rust
+  - cargo
+  - cbindgen
+  - nodejs
+  - python
+  - nasm
+  - yasm
+  - pkgconf
+build:
+  - ./mach build
+install:
+  - ./mach install DESTDIR=${PKGDIR} --prefix=/usr
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Pin an ESR or stable release before enabling official MEMO builds; Mozilla toolchain requirements must be satisfied from MEMO packages.
