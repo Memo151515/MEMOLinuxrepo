@@ -1,0 +1,32 @@
+name: floorp
+version: scaffold
+summary: Firefox-derived browser with additional desktop customization features
+license: MPL-2.0
+homepage: https://floorp.app/
+source:
+  type: git
+  url: https://github.com/Floorp-Projects/Floorp.git
+  tag: release-to-pin
+dependencies:
+  - firefox
+  - gtk3
+  - nss
+  - nspr
+  - sqlite
+  - icu
+build_dependencies:
+  - clang
+  - rust
+  - cargo
+  - nodejs
+  - python
+  - pkgconf
+build:
+  - build from pinned Floorp source after MEMO Firefox toolchain is ready
+install:
+  - stage under ${PKGDIR}/usr/lib/floorp and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser
+  lfs_safe: false
+  status: scaffold
+  notes: Treat as a Firefox-family package and keep branding/update behavior MEMO-controlled.
