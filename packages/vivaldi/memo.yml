@@ -1,0 +1,30 @@
+name: vivaldi
+version: scaffold
+summary: Vivaldi vendor browser integration placeholder for MEMO Linux
+license: Proprietary
+homepage: https://vivaldi.com/
+source:
+  type: vendor
+  url: https://vivaldi.com/download/
+  directory: vivaldi-version-to-review
+dependencies:
+  - glibc
+  - gtk3
+  - nss
+  - nspr
+  - cups
+  - dbus
+  - fontconfig
+  - mesa
+build_dependencies:
+  - bsdtar
+  - patchelf
+build:
+  - review vendor redistribution terms before packaging
+install:
+  - stage reviewed vendor payload under ${PKGDIR}/opt/vivaldi and launcher under ${PKGDIR}/usr/bin
+memo:
+  stage: browser-vendor
+  lfs_safe: false
+  status: redistribution_review
+  notes: Vivaldi is mostly vendor-distributed; do not treat it as an LFS-native source build until licensing and source availability are resolved.
