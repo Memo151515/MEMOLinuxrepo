@@ -1,10 +1,10 @@
-# MEMO Linux Repository Progress
+# MEMQ Linux Repository Progress
 
 ## Status
 
 Initial native package repository bootstrap is now usable as a small source-based package set.
 
-MEMO Linux targets an LFS-based source-built system. Package recipes in this repository must remain independent from Arch, Debian, or any other distribution binary package manager.
+MEMQ Linux targets an LFS-based source-built system. Package recipes in this repository must remain independent from Arch, Debian, or any other distribution binary package manager.
 
 ## Added Packages
 
@@ -27,12 +27,12 @@ MEMO Linux targets an LFS-based source-built system. Package recipes in this rep
 
 - `packages/<name>/memo.yml` contains package metadata and the source build summary.
 - `packages/<name>/build.sh` stages installs into `${PKGDIR}`.
-- `packages/<name>/NOTES.md` records Arch/Debian reference notes and MEMO-specific packaging choices.
+- `packages/<name>/NOTES.md` records Arch/Debian reference notes and MEMQ-specific packaging choices.
 
 ## Next Tasks
 
-- Add checksum fields once MEMO source mirroring/download tooling is defined.
+- Add checksum fields once MEMQ source mirroring/download tooling is defined.
 - Add a formal package schema validator.
 - Add native recipes for libraries needed by existing packages: `readline`, `ncurses`, `pcre2`, `gmp`, `mpfr`, `acl`, and `attr`.
-- Decide how MEMO package archives will be assembled from `${PKGDIR}`.
+- Decide how MEMQ package archives will be assembled from `${PKGDIR}`.
 - Add CI checks for `memo.yml` structure and `build.sh` shell syntax.
