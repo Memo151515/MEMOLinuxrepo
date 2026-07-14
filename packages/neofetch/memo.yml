@@ -1,0 +1,20 @@
+name: neofetch
+version: 7.1.0
+package_type: binary
+status: stable
+summary: Fast, highly-customizable system info script
+license: MIT
+homepage: https://github.com/dylanaraps/neofetch
+source:
+  type: git
+  url: https://github.com/dylanaraps/neofetch.git
+build:
+  # Derleme yok! Sadece kuruluma hazır hale getiriyoruz.
+  - mkdir -p ${PKGDIR}/usr/local/bin
+install:
+  # Betiği doğrudan çalıştırılabilir dizine kopyalıyoruz
+  - cp neofetch ${PKGDIR}/usr/local/bin/neofetch
+  - chmod +x ${PKGDIR}/usr/local/bin/neofetch
+memo:
+  stage: utility
+  lfs_safe: true
