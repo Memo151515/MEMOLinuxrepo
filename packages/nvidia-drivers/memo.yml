@@ -1,0 +1,23 @@
+name: nvidia-drivers
+version: 550.54.14
+package_type: binary
+status: stable
+summary: NVIDIA Linux Graphics Driver
+license: NVIDIA
+homepage: https://www.nvidia.com/
+source:
+  type: web
+  url: https://us.download.nvidia.com/XFree86/Linux-x86_64/550.54.14/NVIDIA-Linux-x86_64-550.54.14.run
+build:
+  # Sürücü zaten binary (hazır) olduğu için derleme adımı boş geçilir.
+  - chmod +x ${SRC_TARBALL}
+install:
+  # Nvidia installer'ını pasif modda (derlemeden, hazır dosyaları çıkararak) çalıştırıp hedef klasöre kuruyoruz.
+  # --extract-only parametresiyle açıp gerekli kütüphaneleri sistem dizinine yerleştirebiliriz.
+  - sh ${SRC_TARBALL} --extract-only --target nvidia-tmp
+  - mkdir -p ${PKGDIR}/usr/local/bin
+  - cp nvidia-tmp/nvidia-smi ${PKGDIR}/usr/local/bin/
+  - cp nvidia-tmp/nvidia-settings ${PKGDIR}/usr/local/bin/
+memo:
+  stage: drivers
+  lfs_safe: true
