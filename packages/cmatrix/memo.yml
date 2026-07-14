@@ -1,0 +1,23 @@
+name: cmatrix
+version: 2.0
+summary: Terminal based Matrix-like screen
+license: GPL-3.0
+homepage: https://github.com/abishekvashok/cmatrix
+source:
+  type: archive
+  url: https://github.com/abishekvashok/cmatrix/archive/refs/tags/v2.0.tar.gz
+  directory: cmatrix-2.0
+dependencies:
+  - ncurses
+build_dependencies:
+  - cmake
+  - gcc
+  - make
+build:
+  - cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake --build build
+install:
+  - DESTDIR=${PKGDIR} cmake --install build
+memo:
+  stage: base-extra
+  lfs_safe: true
