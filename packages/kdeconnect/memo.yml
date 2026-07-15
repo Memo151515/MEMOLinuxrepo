@@ -2,12 +2,13 @@ name: kdeconnect
 version: 23.08.5
 package_type: binary
 status: stable
-summary: KDE Connect - Telefon ve bilgisayar senkronizasyonu (Hazır Binary)
+summary: KDE Connect - Telefon ve bilgisayar senkronizasyonu 
 license: GPL-2.0+
 homepage: https://kde.org/applications/system/kdeconnect/
 source:
   type: web
-  url: http://archive.ubuntu.com/ubuntu/pool/universe/k/kdeconnect/kdeconnect_23.08.5-0ubuntu1_amd64.deb
+  # Debian'ın snapshot (arşiv) servisinden doğrudan silinmeyecek sürüm:
+  url: https://snapshot.debian.org/archive/debian/20240320T210515Z/pool/main/k/kdeconnect/kdeconnect_23.08.5-1%2Bb1_amd64.deb
 build:
   - mkdir -p extracted
   - ar x ${SRC_TARBALL} --output=extracted
