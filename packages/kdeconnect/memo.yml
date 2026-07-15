@@ -7,20 +7,15 @@ license: GPL-2.0+
 homepage: https://kde.org/applications/system/kdeconnect/
 source:
   type: web
-  # Debian'ın kararlı yansımasından hazır derlenmiş .deb paketini çekiyoruz
-  url: http://ftp.debian.org/debian/pool/main/k/kdeconnect/kdeconnect_23.08.5-1+b1_amd64.deb
+  url: http://archive.ubuntu.com/ubuntu/pool/universe/k/kdeconnect/kdeconnect_23.08.5-0ubuntu1_amd64.deb
 build:
   - mkdir -p extracted
-  # .deb paketini yerelde açıyoruz (derleme yok, sadece arşivi çıkarıyoruz)
   - ar x ${SRC_TARBALL} --output=extracted
   - tar -xf extracted/data.tar.xz -C extracted/
 install:
-  # Çıkardığımız hazır binary ve kütüphaneleri doğrudan sistem dizinine kopyalıyoruz
   - mkdir -p ${PKGDIR}/usr/local/bin
   - mkdir -p ${PKGDIR}/usr/local/lib64
   - mkdir -p ${PKGDIR}/usr/local/share
-  
-  # Çalıştırılabilir dosyalar
   - cp -r extracted/usr/bin/* ${PKGDIR}/usr/local/bin/ 2>/dev/null || true
   - cp -r extracted/usr/lib/x86_64-linux-gnu/* ${PKGDIR}/usr/local/lib64/ 2>/dev/null || true
   - cp -r extracted/usr/share/* ${PKGDIR}/usr/local/share/ 2>/dev/null || true
