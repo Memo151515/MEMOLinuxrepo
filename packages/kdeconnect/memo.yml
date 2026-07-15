@@ -1,26 +1,29 @@
 name: kdeconnect
-version: 24.08.0
+version: 23.08.5
 package_type: binary
 status: stable
-summary: Adds communication between KDE and your smartphone
+summary: KDE Connect - Telefon ve bilgisayar senkronizasyonu (Hazır Binary)
 license: GPL-2.0+
 homepage: https://kde.org/applications/system/kdeconnect/
 source:
   type: web
-  url: https://download.kde.org/stable/release-service/24.08.0/src/kdeconnect-kde-24.08.0.tar.xz
-dependencies:
-  - kde-frameworks/ki18n
-  - kde-frameworks/kcmutils
-  - kde-frameworks/knotifications
-  - dev-qt/qtnetwork
+  # Debian'ın kararlı yansımasından hazır derlenmiş .deb paketini çekiyoruz
+  url: http://ftp.debian.org/debian/pool/main/k/kdeconnect/kdeconnect_23.08.5-1+b1_amd64.deb
 build:
-  # Gentoo üzerinde KDE Connect zaten sisteminde kurulu olan QT/KDE kütüphanelerini doğrudan kullanır.
-  # Sadece derleme klasörlerini hazır hale getiriyoruz.
-  - mkdir -p ${PKGDIR}/usr/local/bin
+  - mkdir -p extracted
+  # .deb paketini yerelde açıyoruz (derleme yok, sadece arşivi çıkarıyoruz)
+  - ar x ${SRC_TARBALL} --output=extracted
+  - tar -xf extracted/data.tar.xz -C extracted/
 install:
-  # Eğer önceden derlenmiş binary'leri buraya çekmek istiyorsan onları kopyalayabilirsin.
-  # Şimdilik sisteminde kdeconnect-cli ve kdeconnectd'nin çalışabilmesi için gerekli dizin yapısını hazırlıyoruz.
-  - echo "KDE Connect staging done"
+  # Çıkardığımız hazır binary ve kütüphaneleri doğrudan sistem dizinine kopyalıyoruz
+  - mkdir -p ${PKGDIR}/usr/local/bin
+  - mkdir -p ${PKGDIR}/usr/local/lib64
+  - mkdir -p ${PKGDIR}/usr/local/share
+  
+  # Çalıştırılabilir dosyalar
+  - cp -r extracted/usr/bin/* ${PKGDIR}/usr/local/bin/ 2>/dev/null || true
+  - cp -r extracted/usr/lib/x86_64-linux-gnu/* ${PKGDIR}/usr/local/lib64/ 2>/dev/null || true
+  - cp -r extracted/usr/share/* ${PKGDIR}/usr/local/share/ 2>/dev/null || true
 memo:
   stage: utility
   lfs_safe: true
