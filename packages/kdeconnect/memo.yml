@@ -1,14 +1,16 @@
 name: kdeconnect
-version: 23.08.5
+version: 26.04.3
 package_type: binary
 status: stable
-summary: KDE Connect - Telefon ve bilgisayar senkronizasyonu 
+summary: KDE Connect - Telefon ve bilgisayar senkronizasyonu
 license: GPL-2.0+
 homepage: https://kde.org/applications/system/kdeconnect/
 source:
   type: web
-  # Debian'ın snapshot (arşiv) servisinden doğrudan silinmeyecek sürüm:
-  url: https://snapshot.debian.org/archive/debian/20240320T210515Z/pool/main/k/kdeconnect/kdeconnect_23.08.5-1%2Bb1_amd64.deb
+  url: https://ftp.debian.org/debian/pool/main/k/kdeconnect/kdeconnect_26.04.3-1_amd64.deb
+  extra_urls:
+    - https://ftp.debian.org/debian/pool/main/k/kdeconnect/kdeconnect-libs_26.04.3-1_amd64.deb
+    - https://ftp.debian.org/debian/pool/main/k/kdeconnect/qml6-module-org-kde-kdeconnect_26.04.3-1_amd64.deb
 build:
   - mkdir -p extracted
   - ar x ${SRC_TARBALL} --output=extracted
