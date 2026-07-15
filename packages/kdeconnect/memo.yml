@@ -1,0 +1,26 @@
+name: kdeconnect
+version: 24.08.0
+package_type: binary
+status: stable
+summary: Adds communication between KDE and your smartphone
+license: GPL-2.0+
+homepage: https://kde.org/applications/system/kdeconnect/
+source:
+  type: web
+  url: https://download.kde.org/stable/release-service/24.08.0/src/kdeconnect-kde-24.08.0.tar.xz
+dependencies:
+  - kde-frameworks/ki18n
+  - kde-frameworks/kcmutils
+  - kde-frameworks/knotifications
+  - dev-qt/qtnetwork
+build:
+  # Gentoo üzerinde KDE Connect zaten sisteminde kurulu olan QT/KDE kütüphanelerini doğrudan kullanır.
+  # Sadece derleme klasörlerini hazır hale getiriyoruz.
+  - mkdir -p ${PKGDIR}/usr/local/bin
+install:
+  # Eğer önceden derlenmiş binary'leri buraya çekmek istiyorsan onları kopyalayabilirsin.
+  # Şimdilik sisteminde kdeconnect-cli ve kdeconnectd'nin çalışabilmesi için gerekli dizin yapısını hazırlıyoruz.
+  - echo "KDE Connect staging done"
+memo:
+  stage: utility
+  lfs_safe: true
